@@ -13,12 +13,11 @@ import com.anychart.charts.Radar
 import com.anychart.core.annotations.VerticalLine
 import com.example.mugsassignment.databinding.FragmentPlotBinding
 
-
 class PlotFragment : Fragment(R.layout.fragment_plot) {
     private var _binding: FragmentPlotBinding? = null
     private val binding get() = _binding
-    private val salary = listOf(31,28,31,30,31,30,31,31,30,31,30,31)
-    private val months = listOf("January","February","March","April","May","June","July","August","September","October","November","December")
+    private val salary = listOf(31,30,31,30,31,31,30,31,30,31,28,30)
+    private val months = listOf("December","November","October","September","August","July","June","May","April","March","February","January")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -35,6 +34,8 @@ class PlotFragment : Fragment(R.layout.fragment_plot) {
         for (index in salary.indices){
             dataPlot.add(ValueDataEntry(months.elementAt(index),salary.elementAt(index)))
         }
+        radar?.yScale()?.minimum(26)
+        radar?.yScale()?.maximum(32)
         radar?.data(dataPlot)
         binding?.plotChartFragment?.setChart(radar)
     }

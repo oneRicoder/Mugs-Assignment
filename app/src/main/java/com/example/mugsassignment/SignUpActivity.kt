@@ -1,5 +1,6 @@
 package com.example.mugsassignment
 
+import android.app.Dialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -11,6 +12,7 @@ import com.google.firebase.auth.FirebaseAuth
 class SignUpActivity : AppCompatActivity() {
     private var binding: ActivitySignUpBinding? = null
     private lateinit var firebaseAuth: FirebaseAuth
+    lateinit var mProgressDialog: Dialog
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySignUpBinding.inflate(layoutInflater)
@@ -29,7 +31,9 @@ class SignUpActivity : AppCompatActivity() {
         val email: String = binding?.etEmail?.text.toString().trim { it <= ' ' }
         val password: String = binding?.etPassword?.text.toString().trim { it <= ' ' }
         if (validateForm(name, email, password)){
+            showProgressDialog()
             firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
+                hideProgressDialog()
                 if (it.isSuccessful){
                     Toast.makeText(this, "Account Created !", Toast.LENGTH_LONG).show()
                     startActivity(Intent(this, SignInActivity::class.java))
@@ -56,5 +60,13 @@ class SignUpActivity : AppCompatActivity() {
                 true
             }
         }
+    }
+    fun showProgressDialog(){
+        mProgressDialog = Dialog(this)
+        mProgressDialog.setContentView(R.layout.dialog_progress)
+        mProgressDialog.show()
+    }
+    fun hideProgressDialog(){
+        mProgressDialog.dismiss()
     }
 }

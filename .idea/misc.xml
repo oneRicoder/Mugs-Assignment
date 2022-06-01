@@ -8,6 +8,7 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.37447916666666664" />
         <entry key="app/src/main/res/layout/activity_sign_in.xml" value="0.35989583333333336" />
         <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.37447916666666664" />
+        <entry key="app/src/main/res/layout/dialog_progress.xml" value="0.37447916666666664" />
         <entry key="app/src/main/res/layout/fragment_pi.xml" value="0.37447916666666664" />
         <entry key="app/src/main/res/layout/fragment_plot.xml" value="0.37447916666666664" />
       </map>
