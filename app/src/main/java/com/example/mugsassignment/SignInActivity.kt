@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Toast
 import com.example.mugsassignment.databinding.ActivitySignInBinding
+import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 
 class SignInActivity : AppCompatActivity() {
@@ -15,6 +16,7 @@ class SignInActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySignInBinding.inflate(layoutInflater)
         setContentView(binding?.root)
+        FirebaseApp.initializeApp(this)
         firebaseAuth = FirebaseAuth.getInstance()
         binding?.tvNotRegisteredYet?.setOnClickListener {
             startActivity(Intent(this, SignUpActivity::class.java))
